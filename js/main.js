@@ -10,9 +10,12 @@ document.body.appendChild( renderer.domElement );
 
 var spriteMap = new THREE.TextureLoader().load("image/test.jpg");
 var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+spriteMaterial.sizeAttenuation = false;
 var sprite = new THREE.Sprite( spriteMaterial );
+sprite.scale.set(0.1, 0.1, 1);
 
 var sprite2 = new THREE.Sprite( spriteMaterial.clone() );
+sprite2.scale.set(0.1, 0.1, 1);
 
 sprite.position.x = 0;
 sprite.position.y = 0;
@@ -35,11 +38,11 @@ var foo = false;
 function animate() {
 	requestAnimationFrame( animate );
 
-  if (sprite.material.rotation < 3.1) {
-    sprite.material.rotation += 0.1;
+  if (sprite2.material.rotation < 3.1) {
+    sprite2.material.rotation += 0.1;
   } else {
     if (foo == false) {
-      sprite.material = sprite2.material.clone();
+      sprite2.material = sprite.material.clone();
     }
   }
 
